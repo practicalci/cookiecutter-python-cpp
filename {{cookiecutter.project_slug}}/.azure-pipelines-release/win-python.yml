@@ -1,0 +1,27 @@
+jobs:
+- job: win_dev_python
+  variables:
+  - name: PROJECT_CONDA_ENV
+    value: '{{cookiecutter.project_namespace}}-{{cookiecutter.project_slug}}'
+  strategy:
+    maxParallel: 4
+  pool:
+    vmImage: vs2017-win2016
+  steps:
+
+  - powershell: Write-Host "##vso[task.prependpath]$env:CONDA\Scripts"
+    displayName: Add conda to PATH
+
+  - script: conda env create --quiet --file conda/condaenv_dev.yaml
+    displayName: Create Anaconda environment
+
+  - script: |
+     call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64 10.0.10240.0 -vcvars_ver=14.0
+     rem cd is require because the above command changes the cwd.
+     cd \d %SYSTEM_DEFAULTWORKINGDIRECTORY%\
+
+     call activate %PROJECT_CONDA_ENV%
+
+     python setup.py bdist_wheel
+     if not %errorlevel%==0 exit /b 1
+    displayName: Build

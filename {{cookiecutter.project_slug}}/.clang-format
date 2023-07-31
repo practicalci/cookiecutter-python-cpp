@@ -1,0 +1,6 @@
+# clang-format [options]
+# Styles based on LLVM Style Guide
+BasedOnStyle:  LLVM
+Language:        Cpp
+IndentWidth: 4
+ColumnLimit:     100

@@ -1,0 +1,22 @@
+{
+  "cookiecutter": {
+    "organization": "{{ cookiecutter.organization }}",
+    "author": "{{ cookiecutter.author }}",
+    "email": "{{ cookiecutter.email }}",
+    "year": "{{ cookiecutter.year }}",
+    "license": "{{ cookiecutter.license }}",
+    "project_name": "{{ cookiecutter.project_name }}",
+    "description": "{{ cookiecutter.description }}",
+    "long_description": "{{ cookiecutter.long_description }}",
+    "project_slug": "{{ cookiecutter.project_slug }}",
+    "project_namespace": "{{ cookiecutter.project_namespace }}",
+    "version": "{{ cookiecutter.version }}",
+    "cpp_standard": "{{ cookiecutter.cpp_standard }}",
+    "check_style": "{{ cookiecutter.check_style }}",
+    "git_server": "{{ cookiecutter.git_server }}",
+    "username": "{{ cookiecutter.username }}",
+    "branch": "{{ cookiecutter.branch }}",
+    "remote": "{{ cookiecutter.remote }}",
+    "_template": "gh:practicalci/cookiecutter-cpp"
+  }
+}

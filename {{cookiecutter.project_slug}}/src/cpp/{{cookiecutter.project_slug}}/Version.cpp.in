@@ -1,0 +1,58 @@
+#include <{{cookiecutter.project_namespace}}/{{cookiecutter.project_slug}}/Version.h>
+
+namespace {{ cookiecutter.project_namespace }} {
+namespace {{ cookiecutter.project_slug }} {
+
+    bool Version::operator== (const Version& other) const {
+        return this->major == other.major && 
+            this->minor == other.minor && this->patch == other.patch;
+    }
+
+    bool Version::operator!= (const Version& other) const {
+        return !(*this == other); 
+    }
+
+    bool Version::operator> (const Version& other) const {
+        return (this->major > other.major) || 
+            (this->major > other.major && this->minor > other.minor) ||
+            (this->major > other.major && this->minor > other.minor && this->patch > other.patch);
+    }
+
+    bool Version::operator< (const Version& other) const {
+        return !(*this > other) && *this != other;
+    }
+
+    bool Version::operator<= (const Version& other) const {
+        return (*this == other) || (*this < other);
+    }
+
+    bool Version::operator>= (const Version& other) const {
+        return (*this == other) || (*this > other);
+    }
+
+    bool Version::major_at_least(const Version& other) const {
+        return (this->major == other.major) &&
+            (this->minor <= other.minor) &&
+            (this->patch <= other.patch);
+    }
+
+    bool Version::minor_at_least(const Version& other) const {
+        return (this->major == other.major) &&
+            (this->minor == other.minor) &&
+            (this->patch <= other.patch);
+    }
+
+    std::ostream& operator<<(std::ostream& os, const Version& version) {
+        return os << version.major << '.' << version.minor << '.' << version.patch;
+    }
+
+    const Version Version::get_version() {
+        const Version project_version = Version(@PROJECT_NAMESPACE_UPPER@_@PROJECT_NAME_UPPER@_VERSION_MAJOR, 
+            @PROJECT_NAMESPACE_UPPER@_@PROJECT_NAME_UPPER@_VERSION_MINOR,
+            @PROJECT_NAMESPACE_UPPER@_@PROJECT_NAME_UPPER@_VERSION_PATCH);
+
+        return project_version;
+    }
+
+} // namespace {{ cookiecutter.project_slug }}
+} // namespace {{ cookiecutter.project_namespace }}

@@ -1,0 +1,25 @@
+name: {{cookiecutter.project_namespace}}-{{cookiecutter.project_slug}}
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+# Dev tools
+  - bumpversion=0.5.3
+  - cookiecutter=1.6
+  - pytest-cov=2.6.1
+# C++ dev tools
+  - pyyaml
+  - cmake=3.26.4
+  - ninja=1.11.1
+  - gcovr=5.2
+# Python dev tools
+  - scikit-build=0.8
+  - flake8=3.7
+  - coverage=4.5
+  - pytest
+  - pytest-cov
+  - pytest-xdist
+# C++ project dependencies
+  - catch2=3.4.0
+  - pybind11=2.11.1
+  - eigen=3.4.1
