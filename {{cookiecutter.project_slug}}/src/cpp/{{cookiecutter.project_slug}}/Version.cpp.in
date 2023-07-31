@@ -1,7 +1,11 @@
+/*
+ * Copyright (c) {% now 'local', '%Y' %}, {% if cookiecutter.organization %}{{ cookiecutter.organization }}{% else %}{{ cookiecutter.author }} <{{ cookiecutter.email.split('@')[0] }} at {{ cookiecutter.email.split('@')[1]|replace('.', ' dot ') }}>{% endif %}
+ */
+
 #include <{{cookiecutter.project_namespace}}/{{cookiecutter.project_slug}}/Version.h>
 
+namespace {{ cookiecutter.org_namespace }} {
 namespace {{ cookiecutter.project_namespace }} {
-namespace {{ cookiecutter.project_slug }} {
 
     bool Version::operator== (const Version& other) const {
         return this->major == other.major && 
@@ -47,12 +51,12 @@ namespace {{ cookiecutter.project_slug }} {
     }
 
     const Version Version::get_version() {
-        const Version project_version = Version(@PROJECT_NAMESPACE_UPPER@_@PROJECT_NAME_UPPER@_VERSION_MAJOR, 
-            @PROJECT_NAMESPACE_UPPER@_@PROJECT_NAME_UPPER@_VERSION_MINOR,
-            @PROJECT_NAMESPACE_UPPER@_@PROJECT_NAME_UPPER@_VERSION_PATCH);
+        const Version project_version = Version(@ORG_NAMESPACE_UPPER@_@PROJECT_NAMESPACE_UPPER@_VERSION_MAJOR, 
+            @ORG_NAMESPACE_UPPER@_@PROJECT_NAMESPACE_UPPER@_VERSION_MINOR,
+            @ORG_NAMESPACE_UPPER@_@PROJECT_NAMESPACE_UPPER@_VERSION_PATCH);
 
         return project_version;
     }
 
-} // namespace {{ cookiecutter.project_slug }}
 } // namespace {{ cookiecutter.project_namespace }}
+} // namespace {{ cookiecutter.org_namespace }}

@@ -1,18 +1,17 @@
 /*
- * Copyright (C) 2019 Eyeware Tech SA
- *
+ * Copyright (c) {% now 'local', '%Y' %}, {% if cookiecutter.organization %}{{ cookiecutter.organization }}{% else %}{{ cookiecutter.author }} <{{ cookiecutter.email.split('@')[0] }} at {{ cookiecutter.email.split('@')[1]|replace('.', ' dot ') }}>{% endif %}
  */
 
-#ifndef {{cookiecutter.project_namespace | upper }}_{{cookiecutter.project_slug | upper }}_A_H
-#define {{cookiecutter.project_namespace | upper }}_{{cookiecutter.project_slug | upper }}_A_H
+#ifndef {{cookiecutter.org_namespace | upper }}_{{cookiecutter.project_namespace | upper }}_A_H
+#define {{cookiecutter.org_namespace | upper }}_{{cookiecutter.project_namespace | upper }}_A_H
 
 #include <memory>
 #include <string>
 
 #include <{{cookiecutter.project_namespace}}/{{cookiecutter.project_slug}}/core/B.h>
 
+namespace {{ cookiecutter.org_namespace }} {
 namespace {{ cookiecutter.project_namespace }} {
-namespace {{ cookiecutter.project_slug }} {
 namespace core {
 
 /**
@@ -54,7 +53,7 @@ const std::string
 get_name_of_other(const A &other); /**< non-member function to get the name of an A object */
 
 } // namespace core
-} // namespace {{cookiecutter.project_slug}}
 } // namespace {{cookiecutter.project_namespace}}
+} // namespace {{cookiecutter.org_namespace}}
 
-#endif // {{cookiecutter.project_namespace | upper }}_{{cookiecutter.project_slug | upper }}_A_H
+#endif // {{cookiecutter.org_namespace | upper }}_{{cookiecutter.project_namespace | upper }}_A_H

@@ -1,14 +1,14 @@
 /*
- * Copyright (C) 2019 Eyeware Tech SA
- *
+ * Copyright (c) {% now 'local', '%Y' %}, {% if cookiecutter.organization %}{{ cookiecutter.organization }}{% else %}{{ cookiecutter.author }} <{{ cookiecutter.email.split('@')[0] }} at {{ cookiecutter.email.split('@')[1]|replace('.', ' dot ') }}>{% endif %}
  */
+
 
 #include <string>
 
 #include <{{cookiecutter.project_namespace}}/{{cookiecutter.project_slug}}/core/A.h>
 
+namespace {{ cookiecutter.org_namespace }} {
 namespace {{ cookiecutter.project_namespace }} {
-namespace {{ cookiecutter.project_slug }} {
 namespace core {
 
 // constructors
@@ -56,5 +56,5 @@ std::shared_ptr<B> A::return_shared_pointer() { return std::make_shared<B>(); }
 const std::string get_name_of_other(const A &other) { return other.get_name(); }
 
 } // namespace core
-} // namespace {{cookiecutter.project_slug}}
 } // namespace {{cookiecutter.project_namespace}}
+} // namespace {{cookiecutter.org_namespace}}

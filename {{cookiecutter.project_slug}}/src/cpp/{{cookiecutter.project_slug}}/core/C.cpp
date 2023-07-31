@@ -1,12 +1,12 @@
 /*
- * Copyright (C) 2019 Eyeware Tech SA
- *
+ * Copyright (c) {% now 'local', '%Y' %}, {% if cookiecutter.organization %}{{ cookiecutter.organization }}{% else %}{{ cookiecutter.author }} <{{ cookiecutter.email.split('@')[0] }} at {{ cookiecutter.email.split('@')[1]|replace('.', ' dot ') }}>{% endif %}
  */
+
 
 #include <{{cookiecutter.project_namespace}}/{{cookiecutter.project_slug}}/core/C.h>
 
+namespace {{ cookiecutter.org_namespace }} {
 namespace {{ cookiecutter.project_namespace }} {
-namespace {{ cookiecutter.project_slug }} {
 namespace core {
 
 // constructors

@@ -9,6 +9,7 @@
     "description": "{{ cookiecutter.description }}",
     "long_description": "{{ cookiecutter.long_description }}",
     "project_slug": "{{ cookiecutter.project_slug }}",
+    "org_namespace": "{{ cookiecutter.org_namespace }}",
     "project_namespace": "{{ cookiecutter.project_namespace }}",
     "version": "{{ cookiecutter.version }}",
     "cpp_standard": "{{ cookiecutter.cpp_standard }}",

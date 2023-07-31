@@ -1,17 +1,16 @@
 /*
- * Copyright (C) 2019 Eyeware Tech SA
- *
+ * Copyright (c) {% now 'local', '%Y' %}, {% if cookiecutter.organization %}{{ cookiecutter.organization }}{% else %}{{ cookiecutter.author }} <{{ cookiecutter.email.split('@')[0] }} at {{ cookiecutter.email.split('@')[1]|replace('.', ' dot ') }}>{% endif %}
  */
 
-#ifndef {{cookiecutter.project_namespace | upper }}_{{cookiecutter.project_slug | upper }}_E_H
-#define {{cookiecutter.project_namespace | upper }}_{{cookiecutter.project_slug | upper }}_E_H
+#ifndef {{cookiecutter.org_namespace | upper }}_{{cookiecutter.project_namespace | upper }}_E_H
+#define {{cookiecutter.org_namespace | upper }}_{{cookiecutter.project_namespace | upper }}_E_H
 
 #include <string>
 
 // This is a private class, it is not exposed to the public API of the project.
 
+namespace {{ cookiecutter.org_namespace }} {
 namespace {{ cookiecutter.project_namespace }} {
-namespace {{ cookiecutter.project_slug }} {
 namespace core {
 namespace detail {
 
@@ -31,7 +30,7 @@ class E {
 
 } // namespace detail
 } // namespace core
-} // namespace {{cookiecutter.project_slug}}
 } // namespace {{cookiecutter.project_namespace}}
+} // namespace {{cookiecutter.org_namespace}}
 
-#endif // {{cookiecutter.project_namespace | upper }}_{{cookiecutter.project_slug | upper }}_E_H
+#endif // {{cookiecutter.org_namespace | upper }}_{{cookiecutter.project_namespace | upper }}_E_H

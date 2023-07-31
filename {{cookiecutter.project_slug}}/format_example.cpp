@@ -4,8 +4,8 @@
 // check the link below, for available identifier naming checks of clang-tidy.
 // https://clang.llvm.org/extra/clang-tidy/checks/readability-identifier-naming.html
 
-namespace {{cookiecutter.project_namespace}} { // NamespaceCase: lower_case :
-namespace {{cookiecutter.project_slug}} {
+namespace {{cookiecutter.org_namespace}} { // NamespaceCase: lower_case :
+namespace {{cookiecutter.project_namespace}} {
 
 const int GLOBAL_CONSTANT = 12; // GlobalConstantCase: UPPER_CASE
 
@@ -37,7 +37,7 @@ void some_function() {
     int local_var; // VariableCase: lower_case
 }
 
-} // namespace {{cookiecutter.project_slug}}
 } // namespace {{cookiecutter.project_namespace}}
+} // namespace {{cookiecutter.org_namespace}}
 
 int main() { return 0; }

@@ -8,6 +8,7 @@ set(PROJECT_DESCRIPTION "{{ cookiecutter.description }}")
 set(PROJECT_AUTHOR      "{{ cookiecutter.author }}")
 set(PROJECT_URL         "https://{{ cookiecutter.git_server }}/{{ cookiecutter.username }}/{{ cookiecutter.project_slug }}")
 set(PROJECT_NAMESPACE   "{{ cookiecutter.project_namespace }}")
+set(ORG_NAMESPACE   "{{ cookiecutter.org_namespace }}")
 set(PROJECT_PREFIX ${PROJECT_NAMESPACE}/${PROJECT_NAME})
 set(PROJECT_PUBLIC_INCLUDEDIR ${PROJECT_SOURCE_DIR}/include/public)
 set(PROJECT_PRIVATE_INCLUDEDIR ${PROJECT_SOURCE_DIR}/include/private)
@@ -21,6 +22,7 @@ set(PROJECT_TEST_TARGET test_main)
 set(PROJECT_TARGETS_EXPORT_NAME "${PROJECT_NAME}Modules")
 string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)
 string(TOUPPER ${PROJECT_NAMESPACE} PROJECT_NAMESPACE_UPPER)
+string(TOUPPER ${ORG_NAMESPACE} ORG_NAMESPACE_UPPER)
 
 option(BUILD_PYTHON_PYBIND11 "Build pybind11 python bindings." OFF)
 
@@ -197,7 +199,7 @@ include(clang-tidy) # add clang format targets.
 # with all the clang toolchain.
 
 if(BUILD_TESTS)
-  find_package(Catch2 2.6 REQUIRED)
+  find_package(Catch2 3.4 REQUIRED)
 
   enable_testing()
 
@@ -206,8 +208,7 @@ if(BUILD_TESTS)
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/${PROJECT_TEST_TARGET}.cpp
   )
 
-  # make sure you execute "conan install .." in the build directory
-  target_link_libraries(${PROJECT_TEST_TARGET} PRIVATE Catch2::Catch2)
+  target_link_libraries(${PROJECT_TEST_TARGET} PRIVATE Catch2::Catch2WithMain)
 
   # Enable only coverage in Debug mode, avoid adding debug symbols for Release mode.
   if (CMAKE_BUILD_TYPE STREQUAL "Debug" AND BUILD_TESTS AND ENABLE_COVERAGE)
@@ -275,10 +276,10 @@ if(BUILD_TESTS)
   # Add project module tests
   # ----------------------------------------------------------------------------
 
-  add_subdirectory(tests/cpp/core)
+  add_subdirectory(tests/cpp/{{ cookiecutter.project_slug }}/core)
 
-  include(ParseAndAddCatchTests)
-  ParseAndAddCatchTests(${PROJECT_TEST_TARGET})
+  include(Catch)
+  catch_discover_tests(${PROJECT_TEST_TARGET})
 
 endif()
 

@@ -1,12 +1,12 @@
 /*
- * Copyright (C) 2019 Eyeware Tech SA
- *
+ * Copyright (c) {% now 'local', '%Y' %}, {% if cookiecutter.organization %}{{ cookiecutter.organization }}{% else %}{{ cookiecutter.author }} <{{ cookiecutter.email.split('@')[0] }} at {{ cookiecutter.email.split('@')[1]|replace('.', ' dot ') }}>{% endif %}
  */
+
 
 #include "E.h"
 
+namespace {{ cookiecutter.org_namespace }} {
 namespace {{ cookiecutter.project_namespace }} {
-namespace {{ cookiecutter.project_slug }} {
 
 namespace core {
 namespace detail {
@@ -23,5 +23,5 @@ const std::string E::get_name() const { return m_name; }
 
 } // namespace detail
 } // namespace core
-} // namespace {{cookiecutter.project_slug}}
 } // namespace {{cookiecutter.project_namespace}}
+} // namespace {{cookiecutter.org_namespace}}
